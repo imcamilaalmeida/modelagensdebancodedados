@@ -3,3 +3,7 @@ create database escola;
 use escola;
 
 create table Aluno ( matricula int primary key auto_increment, nome varchar(80) not null, nascimento date , cpf char(14) not null unique, responsavel varchar(80) not null, email varchar(80) unique);
+
+insert into Aluno values;
+
+select * from Aluno;
