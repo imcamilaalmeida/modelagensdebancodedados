@@ -4,6 +4,26 @@ use escola;
 
 create table Aluno ( matricula int primary key auto_increment, nome varchar(80) not null, nascimento date , cpf char(14) not null unique, responsavel varchar(80) not null, email varchar(80) unique);
 
-insert into Aluno values;
+insert into Aluno values ();
 
-select * from Aluno;
+create table Disciplina ( cod_disciplina int primary key auto_increment, nome varchar(30) not null );
+
+create table estuda ( idEstuda int primary key auto_increment, fk_Aluno_matricula int not null, fk_Turma_numero int not null);
+
+alter table estuda add constraint fkmat foreign key (fk_Aluno_matricula) references Aluno (matricula);
+
+alter table estuda add constraint fkt foreign key (fk_Turma_numero) references turma (numero);
+
+create table possui ( idPossui int primary key auto_increment, fk_Disciplina_cod_disciplina int not null, fk_Turma_numero int not null);
+
+alter table possui add constraint fkdisccod foreign key (fk_Disciplina_cod_disciplina) references disciplina (cod_disciplina);
+
+alter table possui add constraint fkturnum foreign key (fk_Turma_numero) references Turma (numero);
+
+ create table professor (matricula int primary key auto_increment, nome varchar(80) not null, formacao varchar(30) not null);
+
+create table leciona (idLeciona int primary key auto_increment, fk_Disciplina_cod_disciplina int not null, fk_Professor_matricula int not null);
+
+alter table leciona add constraint fkdisccoddisc foreign key (fk_Disciplina_cod_disciplina) references disciplina (cod_disciplina);
+
+alter table leciona add constraint fkprofmat foreign key (fk_Professor_matricula) references Professor (matricula);
