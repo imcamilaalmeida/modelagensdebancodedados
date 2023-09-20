@@ -13,3 +13,27 @@ alter table cadastro_veicular rename to carro;
 alter table carro change modelo nome_modelo varchar(50) not null;
 
 alter table carro drop cor;
+
+insert into carro values (001, 'Renault', 'Kwid', 'SDT2I52');
+
+insert into carro values (null, 'Chevrolet', 'Tracker', 'GFZ2C65');
+
+insert into carro values (null, 'VW', 'T-Cross', 'NVW1T23');
+
+insert into carro values (null, 'BMW', '3', 'MXY1260');
+
+insert into carro values (null, 'Lamborghini', 'Huracan', 'GJ8230M');
+
+insert into carro values (null, 'BMW', 'M135i', 'MSJ5028');
+
+update carro set idVeiculo = '7' where idVeiculo = 10;
+
+alter table carro add cor varchar(10) not null after nome_modelo;
+
+update carro set cor = 'Azul' where idVeiculo = 1;
+
+delete from carro where idVeiculo = 7;
+
+select * from carro where placa = 'SDT2I52';
+
+select placa, fabricante, nome_modelo from carro where placa = 'SDT2I52';
