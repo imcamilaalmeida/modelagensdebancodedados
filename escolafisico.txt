@@ -83,3 +83,67 @@ insert into aluno values ( null, 'Judite Presley', null, '123.456.789-20', 'Elvi
 insert into estuda values (null, 3007, 20223100);
 
 update disciplina set nome = 'Programação Python' where nome = 'Programação';
+
+select * from aluno where nascimento = '1999-04-08';
+select matricula, nome from aluno;
+select matricula, nome from aluno order by responsavel;
+select matricula, nome, responsavel from aluno order by responsavel;
+select matricula, nome, responsavel from aluno order by responsavel desc;
+select * from aluno where matricula < 3008;
+select * from aluno where matricula != 3008;
+select * from aluno where matricula <> 3008;
+select * from aluno where matricula >= 3004 and matricula <= 3007;
+select * from aluno where matricula >= 3004 && matricula <= 3007;
+select * from aluno where matricula <= 3004 or matricula >= 3007;
+select * from aluno where matricula <= 3004 or matricula >= 3007 order by nascimento;
+select * from aluno where matricula <= 3004 or matricula >= 3007 order by nascimento desc;
+select nome, nascimento, cpf from aluno where matricula <= 3004 or matricula >= 3007 order by nascimento desc;
+select * from aluno where email is null;
+select * from aluno where not email is null;
+select * from aluno where matricula between 3004 and 3008;
+select * from aluno where matricula in (3003, 3006, 3007);
+select * from aluno where matricula not in (3003, 3006, 3007);
+
+insert into aluno values (null, 'Peter Presley', '1985-10-08', '001.985.100-80', 'Bernadette San Pedro Bayot', 'bruninhodemarte@gmail.com');
+
+select * from aluno where nome like 'J%';
+select * from aluno where nome like '%y';
+select * from aluno where nome like '_o%';
+select * from aluno where nome like '__a%';
+select * from aluno where nome like '%a%'; 
+select * from aluno where nome like '%Presley%';
+
+insert into aluno values (null, 'Josefina Winter Buchanan', '1917-03-10', '001.985.100-83', 'Steve Rogers', 'wintersoldier@gmail.com');
+update aluno set nome = 'Winter Soldier' where matricula = 3009;
+
+select * from aluno where nome like '%winter';
+select * from aluno where nome like 'winter%';
+select * from aluno where nome like '%_winter%';
+
+alter table professor add dependents int;
+update professor set dependents = '3' where matricula = 1901;
+update professor set dependents = '0' where matricula = 1902;
+update professor set dependents = '2' where matricula = 1904;
+
+select avg(dependents) from professor;
+select count(dependents) from professor;
+select count(dependents) from professor where dependents = 3;
+select min(dependents) from professor;
+
+select matricula, nome, nascimento from aluno;
+select matricula, nome, nascimento, month(nascimento) from aluno;
+update aluno set nascimento = '2000-01-01' where matricula = 3007;
+select matricula, nome, nascimento from aluno where month(nascimento) = 04;
+select matricula, nome, nascimento from aluno where day(nascimento) = 08;
+
+select concat('Nome do aluno: ', nome) from aluno;
+select concat('Nome: ', nome, ' - Email: ', email) from aluno where email is not null;
+select concat('Nome: ', nome, ' - Data de Nascimento: ', nascimento) from aluno;
+
+select upper(nome) from aluno;
+select lower(nome) from aluno;
+select lower(nome), lower(email) from aluno;
+
+select aluno.nome, turma.definicao, turma.turno from aluno, turma, estuda where aluno.matricula = estuda.fk_Aluno_matricula and fk_Turma_numero = turma.numero;
+select aluno.nome, turma.definicao, turma.turno from aluno, turma, estuda where aluno.matricula = estuda.fk_Aluno_matricula and fk_Turma_numero = turma.numero order by aluno.nome;
+select aluno.nome, disciplina.nome from aluno, estuda, turma, possui, disciplina where aluno.matricula = estuda.fk_Aluno_matricula and estuda.fk_Turma_numero = turma.numero and turma.numero = possui.fk_Turma_numero and possui.fk_disciplina_cod_disciplina = disciplina.cod_disciplina;
