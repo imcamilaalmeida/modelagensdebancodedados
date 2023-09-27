@@ -1,0 +1,32 @@
+CORREÇÃO DAS QUESTÕES DE FIXAÇÃO DO DIA 26/09
+
+1 - select nome, email from aluno where email is not null; 👍
+
+2 - select nome from professor where formacao = 'T.I.' order by nome; 👍
+
+3 - select * from aluno where matricula >= 3004 and matricula <= 3008;
+    select * from aluno where matricula between 3004 and 3008; 👍
+
+4 - select numero from turma where definicao = 'Técnico de Informática'; 👍
+
+5 - select disciplina.nome from turma, possui, disciplina where turma.numero = possui.fk_Turma_numero and possui.fk_Disciplina_cod_disciplina = disciplina.cod_disciplina and definicao = 'Técnico de Informática'; 🙈
+
+6 - select count(definicao) from turma where definicao = 'Técnico de Informática'; 👍
+
+7 - select * from aluno where nascimento like '2000%'; 🙈
+
+** como selecionar o mês 
+	"select * from aluno where nascimento like '____-03-%';
+
+8 - select nome, nascimento from aluno where month(nascimento) = 9; 👍
+    select nome, nascimento from aluno where nascimento like '____-09-%';
+
+9 - select aluno.nome 'Alunos Turno Manhã', aluno.cpf 'CPF' from aluno, estuda, turma where aluno.matricula = estuda.fk_Aluno_matricula and estuda.fk_Turma_numero = turma.numero and turma.turno = 'M'; 👍
+
+10 - select disciplina.* from turma, possui, disciplina where turma.numero = possui.fk_Turma_numero and possui.fk_Disciplina_cod_disciplina = disciplina.cod_disciplina and turma.turno = 'T'; 🙈
+
+11 - select professor.nome from turma, possui, disciplina, leciona, professor where turma.numero = possui.fk_Turma_numero and possui.fk_Disciplina_cod_disciplina = disciplina.cod_disciplina and disciplina.cod_disciplina = leciona.fk_Disciplina_cod_disciplina and leciona.fk_Professor_matricula = professor.matricula and turma.definicao = 'Técnico de Informática'; 😒
+
+	select professor.nome from turma as t, possui as p, disciplina as d, leciona as l, professor as pr where t.numero = p.fk_Turma_numero and p.fk_Disciplina_cod_disciplina = d.cod_disciplina and d.cod_disciplina = l.fk_Disciplina_cod_disciplina and l.fk_Professor_matricula = pr.matricula and t.definicao = 'Técnico de Informática';
+
+12 - select aluno.nome from aluno, estuda, turma, possui, disciplina, leciona, professor where aluno.matricula = estuda.fk_aluno_matricula and estuda.fk_turma_numero = turma.numero and turma.numero = possui.fk_Turma_numero and possui.fk_Disciplina_cod_disciplina = disciplina.cod_disciplina and disciplina.cod_disciplina = leciona.fk_Disciplina_cod_disciplina and leciona.fk_Professor_matricula = professor.matricula and professor.nome = 'Vicente Orsino'; 🙈
